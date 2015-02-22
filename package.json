@@ -1,0 +1,17 @@
+{
+  "name": "react-stats",
+  "version": "0.0.1",
+  "description": "FPS Stats in React",
+  "repository": "https://github.com/sebslomski/react-stats",
+  "author": "Sebastian Slomski",
+  "main": "index.jsx",
+  "devDependencies": {
+    "browserify": "^6.3.3",
+    "envify": "^3.2.0",
+    "react": "^0.12.2",
+    "reactify": "^0.17.1"
+  },
+  "scripts": {
+    "example": "browserify --debug --transform reactify examples/main.jsx > examples/bundle.js"
+  }
+}

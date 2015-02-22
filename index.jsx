@@ -1,0 +1,148 @@
+'use strict';
+
+var React = require('react');
+
+
+var graphHeight = 28;
+var graphWidth = 70;
+var padding = 5;
+
+var style = {
+  zIndex: 999999,
+  position: 'fixed',
+  bottom: '5px',
+  right: '5px',
+  height: '40px',
+  width: graphWidth + 'px',
+  padding: '3px',
+  backgroundColor: '#000',
+  color: '#00ffff',
+  fontSize: '9px',
+  lineHeight: '10px',
+  fontFamily: 'Helvetica, Arial, sans-serif',
+  fontWeight: 'bold'
+};
+
+var graphStyle = {
+    position: 'absolute',
+    left: '3px',
+    right: '3px',
+    bottom: '3px',
+    height: graphHeight + 'px',
+    backgroundColor: '#282844'
+};
+
+
+var Stats = React.createClass({
+
+  propTypes: {
+    isActive: React.PropTypes.bool
+  },
+
+  getDefaultProps: function() {
+    return {
+      isActive: true
+    };
+  },
+
+  getInitialState: function() {
+    var currentTime = +new Date();
+
+    return {
+      frames: 0,
+      startTime: currentTime,
+      prevTime: currentTime,
+      fps: []
+    };
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return this.state.fps !== nextState.fps;
+  },
+
+  componentDidMount: function() {
+    if (!this.props.isActive) {
+      return;
+    }
+
+    var that = this;
+
+    var onRequestAnimationFrame = function() {
+      that.calcFPS();
+
+      window.requestAnimationFrame(onRequestAnimationFrame);
+    };
+
+    window.requestAnimationFrame(onRequestAnimationFrame);
+  },
+
+  calcFPS: function() {
+    var currentTime = +new Date();
+
+    this.setState({
+      frames: this.state.frames + 1
+    });
+
+    if (currentTime > this.state.prevTime + 1000) {
+      var fps = Math.round(
+        (this.state.frames * 1000) / (currentTime - this.state.prevTime)
+      );
+
+      fps = this.state.fps.concat(fps);
+      var sliceStart = fps.length - graphWidth;
+
+      if (sliceStart < 0) {
+        sliceStart = 0;
+      }
+
+      fps = fps.slice(sliceStart, fps.length);
+
+      this.setState({
+        fps: fps,
+        frames: 0,
+        prevTime: currentTime
+      });
+    }
+  },
+
+  render: function() {
+    if (!this.props.isActive) {
+      return null;
+    }
+
+    var that = this;
+
+    var graphItems = this.state.fps.map(function(fps, i) {
+      var height = Math.min(
+        graphHeight,
+        graphHeight - ( fps / 100 ) * graphHeight
+      );
+
+      var graphItemStyle = {
+        position: 'absolute',
+        bottom: '0',
+        right: (that.state.fps.length -1 - i) + 'px',
+        height: height + 'px',
+        width: '1px',
+        backgroundColor: '#00ffff'
+      };
+
+      return (
+        <div key={'fps-' + i} style={graphItemStyle}></div>
+      );
+    });
+
+    return (
+      <div style={style}>
+        {this.state.fps[this.state.fps.length - 1]} FPS
+
+        <div style={graphStyle}>
+          {graphItems}
+        </div>
+      </div>
+    );
+  }
+});
+
+
+module.exports = Stats;
