@@ -1,10 +1,19 @@
 {
   "name": "react-stats",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "FPS Stats in React",
   "repository": "https://github.com/sebslomski/react-stats",
-  "author": "Sebastian Slomski",
-  "main": "index.jsx",
+  "author": {
+    "name": "Sebastian Slomski",
+    "email": "me@sebslomski.com"
+  },
+  "main": "index.js",
+  "licence": "MIT",
+  "keywords": [
+    "react",
+    "stats",
+    "react-component"
+  ],
   "devDependencies": {
     "browserify": "^6.3.3",
     "envify": "^3.2.0",
