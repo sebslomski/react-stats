@@ -3,7 +3,7 @@
 var React = require('react');
 
 
-var graphHeight = 28;
+var graphHeight = 29;
 var graphWidth = 70;
 var padding = 5;
 
@@ -33,7 +33,7 @@ var graphStyle = {
 };
 
 
-var Stats = React.createClass({
+var FPSStats = React.createClass({
 
   propTypes: {
     isActive: React.PropTypes.bool
@@ -112,11 +112,10 @@ var Stats = React.createClass({
 
     var that = this;
 
+    var maxFps = Math.max.apply(Math.max, that.state.fps);
+
     var graphItems = this.state.fps.map(function(fps, i) {
-      var height = Math.min(
-        graphHeight,
-        graphHeight - ( fps / 100 ) * graphHeight
-      );
+      var height = (graphHeight * fps) / maxFps;
 
       var graphItemStyle = {
         position: 'absolute',
@@ -145,4 +144,6 @@ var Stats = React.createClass({
 });
 
 
-module.exports = Stats;
+module.exports = {
+  FPSStats: FPSStats
+};
