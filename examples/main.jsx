@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-var FPSStats = require('../index.jsx').FPSStats;
+var FPSStats = require('../index.js').FPSStats;
 
 
 var Expensive = React.createClass({

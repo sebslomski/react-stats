@@ -127,18 +127,18 @@ var FPSStats = React.createClass({
       };
 
       return (
-        <div key={'fps-' + i} style={graphItemStyle}></div>
+        React.createElement('div', {key: 'fps-' + i, style: graphItemStyle})
       );
     });
 
     return (
-      <div style={style}>
-        {this.state.fps[this.state.fps.length - 1]} FPS
+      React.createElement('div', {style: style},
+        this.state.fps[this.state.fps.length - 1], ' FPS',
 
-        <div style={graphStyle}>
-          {graphItems}
-        </div>
-      </div>
+        React.createElement('div', {style: graphStyle},
+          graphItems
+        )
+      )
     );
   }
 });
