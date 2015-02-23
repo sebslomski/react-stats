@@ -16,11 +16,13 @@ Inspired by https://github.com/mrdoob/stats.js
 var React = require('react');
 var FPSStats = require('react-stats.jsx').FPSStats;
 
+var __DEV__ = true;
+
 var Application = React.createClass({
   render: function() {
     return (
         <div>
-          <FPSStats />
+          <FPSStats isActive={__DEV__} /> // True by default
         </div>
     );
   }
