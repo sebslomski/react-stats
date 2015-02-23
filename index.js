@@ -4,7 +4,7 @@ var React = require('react');
 
 
 var graphHeight = 29;
-var graphWidth = 70;
+var graphWidth = 76;
 var padding = 5;
 
 var style = {
@@ -12,7 +12,7 @@ var style = {
   position: 'fixed',
   bottom: '5px',
   right: '5px',
-  height: '40px',
+  height: '46px',
   width: graphWidth + 'px',
   padding: '3px',
   backgroundColor: '#000',
@@ -20,16 +20,20 @@ var style = {
   fontSize: '9px',
   lineHeight: '10px',
   fontFamily: 'Helvetica, Arial, sans-serif',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  MozBoxSizing: 'border-box',
+  boxSizing: 'border-box'
 };
 
 var graphStyle = {
-    position: 'absolute',
-    left: '3px',
-    right: '3px',
-    bottom: '3px',
-    height: graphHeight + 'px',
-    backgroundColor: '#282844'
+  position: 'absolute',
+  left: '3px',
+  right: '3px',
+  bottom: '3px',
+  height: graphHeight + 'px',
+  backgroundColor: '#282844',
+  MozBoxSizing: 'border-box',
+  boxSizing: 'border-box'
 };
 
 
@@ -123,7 +127,9 @@ var FPSStats = React.createClass({
         right: (that.state.fps.length -1 - i) + 'px',
         height: height + 'px',
         width: '1px',
-        backgroundColor: '#00ffff'
+        backgroundColor: '#00ffff',
+        MozBoxSizing: 'border-box',
+        boxSizing: 'border-box'
       };
 
       return (
