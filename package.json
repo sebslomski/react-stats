@@ -1,6 +1,6 @@
 {
   "name": "react-stats",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "FPS Stats in React",
   "repository": "https://github.com/sebslomski/react-stats",
   "author": {

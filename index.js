@@ -4,7 +4,7 @@ var React = require('react');
 
 
 var graphHeight = 29;
-var graphWidth = 76;
+var graphWidth = 70;
 var padding = 5;
 
 var style = {
@@ -13,7 +13,7 @@ var style = {
   bottom: '5px',
   right: '5px',
   height: '46px',
-  width: graphWidth + 'px',
+  width: (graphWidth + 6) + 'px',
   padding: '3px',
   backgroundColor: '#000',
   color: '#00ffff',
