@@ -20,7 +20,8 @@ var style = {
   fontFamily: 'Helvetica, Arial, sans-serif',
   fontWeight: 'bold',
   MozBoxSizing: 'border-box',
-  boxSizing: 'border-box'
+  boxSizing: 'border-box',
+  pointerEvents: 'none'
 };
 
 var graphStyle = {
@@ -48,7 +49,7 @@ var FPSStats = React.createClass({
   getDefaultProps: function() {
     return {
       isActive: true,
-      top: 'auto'
+      top: 'auto',
       bottom: '5px',
       right: '5px',
       left: 'auto'
