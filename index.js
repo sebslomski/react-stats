@@ -10,8 +10,6 @@ var padding = 5;
 var style = {
   zIndex: 999999,
   position: 'fixed',
-  bottom: '5px',
-  right: '5px',
   height: '46px',
   width: (graphWidth + 6) + 'px',
   padding: '3px',
@@ -40,12 +38,20 @@ var graphStyle = {
 var FPSStats = React.createClass({
 
   propTypes: {
-    isActive: React.PropTypes.bool
+    isActive: React.PropTypes.bool,
+    top: React.PropTypes.string,
+    bottom: React.PropTypes.string,
+    right: React.PropTypes.string,
+    left: React.PropTypes.string
   },
 
   getDefaultProps: function() {
     return {
-      isActive: true
+      isActive: true,
+      top: 'auto'
+      bottom: '5px',
+      right: '5px',
+      left: 'auto'
     };
   },
 
@@ -62,6 +68,13 @@ var FPSStats = React.createClass({
 
   shouldComponentUpdate: function(nextProps, nextState) {
     return this.state.fps !== nextState.fps;
+  },
+
+  componentWillMount: function() {
+    style.top = this.props.top;
+    style.right = this.props.right;
+    style.bottom = this.props.bottom;
+    style.left = this.props.left;
   },
 
   componentDidMount: function() {
