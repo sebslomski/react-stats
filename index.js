@@ -137,7 +137,7 @@ var FPSStats = React.createClass({
 
       var graphItemStyle = {
         position: 'absolute',
-        bottom: '0',
+        bottom: 0,
         right: (that.state.fps.length -1 - i) + 'px',
         height: height + 'px',
         width: '1px',
