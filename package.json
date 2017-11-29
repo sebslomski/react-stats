@@ -1,6 +1,6 @@
 {
   "name": "react-stats",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "FPS Stats in React",
   "repository": "https://github.com/sebslomski/react-stats",
   "author": {
@@ -9,11 +9,7 @@
   },
   "main": "index.js",
   "licence": "MIT",
-  "keywords": [
-    "react",
-    "stats",
-    "react-component"
-  ],
+  "keywords": ["react", "stats", "react-component"],
   "devDependencies": {
     "browserify": "^6.3.3",
     "envify": "^3.2.0",
@@ -21,6 +17,7 @@
     "reactify": "^0.17.1"
   },
   "scripts": {
-    "example": "browserify --debug --transform reactify examples/main.jsx > examples/bundle.js"
+    "example":
+      "browserify --debug --transform reactify examples/main.jsx > examples/bundle.js"
   }
 }

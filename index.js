@@ -1,7 +1,4 @@
-'use strict';
-
-var React = require('react');
-
+import React, { Component } from 'react';
 
 var graphHeight = 29;
 var graphWidth = 70;
@@ -11,7 +8,7 @@ var style = {
   zIndex: 999999,
   position: 'fixed',
   height: '46px',
-  width: (graphWidth + 6) + 'px',
+  width: graphWidth + 6 + 'px',
   padding: '3px',
   backgroundColor: '#000',
   color: '#00ffff',
@@ -35,50 +32,30 @@ var graphStyle = {
   boxSizing: 'border-box'
 };
 
-
-var FPSStats = React.createClass({
-
-  propTypes: {
-    isActive: React.PropTypes.bool,
-    top: React.PropTypes.string,
-    bottom: React.PropTypes.string,
-    right: React.PropTypes.string,
-    left: React.PropTypes.string
-  },
-
-  getDefaultProps: function() {
-    return {
-      isActive: true,
-      top: 'auto',
-      bottom: '5px',
-      right: '5px',
-      left: 'auto'
-    };
-  },
-
-  getInitialState: function() {
+class FPSStats extends Component {
+  constructor(props) {
+    super(props);
     var currentTime = +new Date();
-
-    return {
+    this.state = {
       frames: 0,
       startTime: currentTime,
       prevTime: currentTime,
       fps: []
     };
-  },
+  }
 
-  shouldComponentUpdate: function(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState) {
     return this.state.fps !== nextState.fps;
-  },
+  }
 
-  componentWillMount: function() {
+  componentWillMount() {
     style.top = this.props.top;
     style.right = this.props.right;
     style.bottom = this.props.bottom;
     style.left = this.props.left;
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     if (!this.props.isActive) {
       return;
     }
@@ -92,9 +69,9 @@ var FPSStats = React.createClass({
     };
 
     window.requestAnimationFrame(onRequestAnimationFrame);
-  },
+  }
 
-  calcFPS: function() {
+  calcFPS() {
     var currentTime = +new Date();
 
     this.setState({
@@ -103,7 +80,7 @@ var FPSStats = React.createClass({
 
     if (currentTime > this.state.prevTime + 1000) {
       var fps = Math.round(
-        (this.state.frames * 1000) / (currentTime - this.state.prevTime)
+        this.state.frames * 1000 / (currentTime - this.state.prevTime)
       );
 
       fps = this.state.fps.concat(fps);
@@ -121,9 +98,9 @@ var FPSStats = React.createClass({
         prevTime: currentTime
       });
     }
-  },
+  }
 
-  render: function() {
+  render() {
     if (!this.props.isActive) {
       return null;
     }
@@ -133,12 +110,12 @@ var FPSStats = React.createClass({
     var maxFps = Math.max.apply(Math.max, that.state.fps);
 
     var graphItems = this.state.fps.map(function(fps, i) {
-      var height = (graphHeight * fps) / maxFps;
+      var height = graphHeight * fps / maxFps;
 
       var graphItemStyle = {
         position: 'absolute',
-        bottom: 0,
-        right: (that.state.fps.length -1 - i) + 'px',
+        bottom: '0',
+        right: that.state.fps.length - 1 - i + 'px',
         height: height + 'px',
         width: '1px',
         backgroundColor: '#00ffff',
@@ -146,24 +123,29 @@ var FPSStats = React.createClass({
         boxSizing: 'border-box'
       };
 
-      return (
-        React.createElement('div', {key: 'fps-' + i, style: graphItemStyle})
-      );
+      return React.createElement('div', {
+        key: 'fps-' + i,
+        style: graphItemStyle
+      });
     });
 
-    return (
-      React.createElement('div', {style: style},
-        this.state.fps[this.state.fps.length - 1], ' FPS',
+    return React.createElement(
+      'div',
+      { style: style },
+      this.state.fps[this.state.fps.length - 1],
+      ' FPS',
 
-        React.createElement('div', {style: graphStyle},
-          graphItems
-        )
-      )
+      React.createElement('div', { style: graphStyle }, graphItems)
     );
   }
-});
+}
 
-
-module.exports = {
-  FPSStats: FPSStats
+FPSStats.defaultProp = {
+  isActive: true,
+  top: 'auto',
+  bottom: '5px',
+  right: '5px',
+  left: 'auto'
 };
+
+export default FPSStats;
