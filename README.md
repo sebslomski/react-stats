@@ -11,9 +11,8 @@ Inspired by https://github.com/mrdoob/stats.js
 ### Usage
 
 ```javascript
-'use strict';
-
 import React, { Component } from 'react';
+import { render } from 'react-dom';
 import FPSStats from 'react-stats');
 
 const __DEV__ = true;
@@ -26,8 +25,8 @@ const Application = () => {
   );
 };
 
-React.render(
-  React.createElement(Application, null),
+render(
+  <Application />,
   document.body
 );
 ```
