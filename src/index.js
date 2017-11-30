@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 var graphHeight = 29;
 var graphWidth = 70;
@@ -6,30 +6,30 @@ var padding = 5;
 
 var style = {
   zIndex: 999999,
-  position: 'fixed',
-  height: '46px',
-  width: graphWidth + 6 + 'px',
-  padding: '3px',
-  backgroundColor: '#000',
-  color: '#00ffff',
-  fontSize: '9px',
-  lineHeight: '10px',
-  fontFamily: 'Helvetica, Arial, sans-serif',
-  fontWeight: 'bold',
-  MozBoxSizing: 'border-box',
-  boxSizing: 'border-box',
-  pointerEvents: 'none'
+  position: "fixed",
+  height: "46px",
+  width: graphWidth + 6 + "px",
+  padding: "3px",
+  backgroundColor: "#000",
+  color: "#00ffff",
+  fontSize: "9px",
+  lineHeight: "10px",
+  fontFamily: "Helvetica, Arial, sans-serif",
+  fontWeight: "bold",
+  MozBoxSizing: "border-box",
+  boxSizing: "border-box",
+  pointerEvents: "none"
 };
 
 var graphStyle = {
-  position: 'absolute',
-  left: '3px',
-  right: '3px',
-  bottom: '3px',
-  height: graphHeight + 'px',
-  backgroundColor: '#282844',
-  MozBoxSizing: 'border-box',
-  boxSizing: 'border-box'
+  position: "absolute",
+  left: "3px",
+  right: "3px",
+  bottom: "3px",
+  height: graphHeight + "px",
+  backgroundColor: "#282844",
+  MozBoxSizing: "border-box",
+  boxSizing: "border-box"
 };
 
 class FPSStats extends Component {
@@ -113,39 +113,39 @@ class FPSStats extends Component {
       var height = graphHeight * fps / maxFps;
 
       var graphItemStyle = {
-        position: 'absolute',
-        bottom: '0',
-        right: that.state.fps.length - 1 - i + 'px',
-        height: height + 'px',
-        width: '1px',
-        backgroundColor: '#00ffff',
-        MozBoxSizing: 'border-box',
-        boxSizing: 'border-box'
+        position: "absolute",
+        bottom: "0",
+        right: that.state.fps.length - 1 - i + "px",
+        height: height + "px",
+        width: "1px",
+        backgroundColor: "#00ffff",
+        MozBoxSizing: "border-box",
+        boxSizing: "border-box"
       };
 
-      return React.createElement('div', {
-        key: 'fps-' + i,
+      return React.createElement("div", {
+        key: "fps-" + i,
         style: graphItemStyle
       });
     });
 
     return React.createElement(
-      'div',
+      "div",
       { style: style },
       this.state.fps[this.state.fps.length - 1],
-      ' FPS',
+      " FPS",
 
-      React.createElement('div', { style: graphStyle }, graphItems)
+      React.createElement("div", { style: graphStyle }, graphItems)
     );
   }
 }
 
 FPSStats.defaultProp = {
   isActive: true,
-  top: 'auto',
-  bottom: '5px',
-  right: '5px',
-  left: 'auto'
+  top: "auto",
+  bottom: "5px",
+  right: "5px",
+  left: "auto"
 };
 
 export default FPSStats;
