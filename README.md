@@ -11,33 +11,29 @@ Inspired by https://github.com/mrdoob/stats.js
 ### Usage
 
 ```javascript
-'use strict';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import FPSStats from 'react-stats');
 
-var React = require('react');
-var FPSStats = require('react-stats.jsx').FPSStats;
+const __DEV__ = true;
 
-var __DEV__ = true;
+const Application = () => {
+  return (
+      <div>
+        <FPSStats isActive={__DEV__} /> // True by default
+      </div>
+  );
+};
 
-var Application = React.createClass({
-  render: function() {
-    return (
-        <div>
-          <FPSStats isActive={__DEV__} /> // True by default
-        </div>
-    );
-  }
-});
-
-React.render(
-  React.createElement(Application, null),
+render(
+  <Application />,
   document.body
 );
 ```
+
 ### Optional Props
 
-By default, the meter is fixed positioned in the bottom right.
-You can pass the optional props `top`, `right`, `bottom` & `left`
-to overrride that positioning. `bottom` & `right` have values by
-default, so pass `'auto'` as their values if you want to use `left`
-or `top` values.
-
+By default, the meter is fixed positioned in the bottom right. You can pass the
+optional props `top`, `right`, `bottom` & `left` to overrride that positioning.
+`bottom` & `right` have values by default, so pass `'auto'` as their values if
+you want to use `left` or `top` values.

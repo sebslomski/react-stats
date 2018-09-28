@@ -1,26 +1,26 @@
 {
   "name": "react-stats",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "FPS Stats in React",
   "repository": "https://github.com/sebslomski/react-stats",
   "author": {
     "name": "Sebastian Slomski",
     "email": "me@sebslomski.com"
   },
-  "main": "index.js",
+  "main": "dist/index.js",
   "licence": "MIT",
-  "keywords": [
-    "react",
-    "stats",
-    "react-component"
-  ],
+  "keywords": ["react", "stats", "react-component"],
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "browserify": "^6.3.3",
     "envify": "^3.2.0",
     "react": "^0.12.2",
     "reactify": "^0.17.1"
   },
   "scripts": {
-    "example": "browserify --debug --transform reactify examples/main.jsx > examples/bundle.js"
+    "build": "$(npm bin)/babel src --out-dir dist --presets es2015",
+    "example":
+      "browserify --debug --transform reactify examples/main.jsx > examples/bundle.js"
   }
 }
